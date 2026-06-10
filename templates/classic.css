@@ -1,0 +1,246 @@
+/* Hybrid Academic CV — sans headers/name + serif body, generous spacing.
+   EN: Inter / Apple SD Gothic Neo (sans), Charter / Palatino (serif).
+   KO: Pretendard (bundled, modern gothic) for the whole document. */
+
+@font-face {
+  font-family: "Pretendard";
+  src: url("../assets/fonts/PretendardVariable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+}
+
+:root {
+  --sans: "Inter", "Avenir Next", "Apple SD Gothic Neo", sans-serif;
+  --serif: "Charter", "Palatino", "Nanum Myeongjo", Georgia, serif;
+  --ink: #1a1a1a;
+  --muted: #555;
+  --rule: #cfcfcf;
+  --head: #2b2b2b;
+}
+
+@page {
+  size: A4;
+  margin: 24mm 24mm 24mm 24mm;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+
+body {
+  font-family: var(--serif);
+  font-size: 10.8pt;
+  line-height: 1.55;
+  color: var(--ink);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 0.4px solid #b8c0c8;
+}
+
+/* ---------- Header ---------- */
+.cv-header {
+  position: relative;
+  text-align: center;
+  border-bottom: 1px solid #222;
+  padding-bottom: 18px;   /* gap between contact line and the divider */
+  margin-bottom: 16px;    /* gap between the divider and the first section (Summary) */
+}
+.cv-header.with-photo {
+  text-align: left;
+  padding-right: 31mm;
+  min-height: 36mm;
+}
+.cv-header.with-photo .head-text { padding-top: 2mm; }
+
+.name {
+  font-family: var(--sans);
+  font-size: 23pt;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  line-height: 1.15;
+  margin: 0;
+}
+.subtitle {
+  font-family: var(--sans);
+  font-size: 10.5pt;
+  font-weight: 400;
+  color: var(--muted);
+  letter-spacing: 0.3px;
+  margin: 5px 0 0 0;
+}
+.contact {
+  font-family: var(--sans);
+  font-size: 9pt;
+  color: var(--muted);
+  line-height: 1.65;
+  margin-top: 7px;
+}
+.contact a { border-bottom: none; }
+.contact .sep { color: #bbb; padding: 0 6px; }
+.contact .ic-link { margin: 0 3px; }
+.contact .ic { width: 11px; height: 11px; fill: currentColor; vertical-align: -1.5px; }
+.contact .ic-group { white-space: nowrap; }
+
+.portrait {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 27mm;
+  height: 36mm;
+  object-fit: cover;
+  border: 0.5px solid #bbb;
+}
+.portrait-placeholder {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 27mm;
+  height: 36mm;
+  border: 0.5px dashed #bbb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--sans);
+  font-size: 7pt;
+  color: #aaa;
+  text-align: center;
+}
+
+/* ---------- Korean overrides (lang=ko only; English unaffected) ----------
+   Whole Korean doc in Pretendard. Hangul has no uppercase/wide-tracking
+   effect, so hierarchy comes from size + weight: bigger, bolder headings. */
+html[lang="ko"] {
+  --serif: "Pretendard", "Apple SD Gothic Neo", sans-serif;
+  --sans: "Pretendard", "Apple SD Gothic Neo", sans-serif;
+}
+html[lang="ko"] body { font-size: 10.3pt; line-height: 1.6; }
+html[lang="ko"] h2 {
+  font-size: 12pt;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+html[lang="ko"] .name { letter-spacing: 1px; }
+html[lang="ko"] .entry-left strong { font-size: 11pt; }
+
+/* ---------- Sections ---------- */
+main { margin-top: 6px; }
+
+h2 {
+  display: flex;
+  align-items: center;
+  font-family: var(--sans);
+  font-size: 10.5pt;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.8px;
+  color: var(--head);
+  margin: 22px 0 9px 0;
+  break-after: avoid;
+}
+h2::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--rule);
+  margin-left: 12px;
+}
+h2:first-of-type { margin-top: 8px; }
+
+h3 {
+  font-family: var(--serif);
+  font-size: 10.8pt;
+  font-weight: 700;
+  margin: 9px 0 2px 0;
+}
+
+p { margin: 3px 0; line-height: 1.55; }
+
+/* ---------- Entry rows (LEFT || RIGHT) ---------- */
+.entry {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1.4em;
+  margin: 11px 0 1px 0;
+  break-inside: avoid;
+}
+.entry-left { flex: 1; }
+.entry-left strong { font-family: var(--serif); font-size: 11pt; font-weight: 700; }
+.entry-right {
+  font-family: var(--sans);
+  font-size: 9.3pt;
+  color: #666;
+  white-space: nowrap;
+}
+/* Secondary qualifier inside an entry title (rank, role gloss) — de-emphasized */
+.role { font-family: var(--sans); font-weight: 400; font-size: 9pt; color: #888; }
+
+/* ---------- Lists ---------- */
+ul, ol { margin: 4px 0 7px 0; padding-left: 1.4em; }
+li { margin: 3.5px 0; line-height: 1.5; }
+
+/* Product list (ART Lab) — each item on a single line */
+.products { margin: 4px 0 5px 0; padding-left: 1.4em; }
+.products li { margin: 3.5px 0; }
+.products li.oneline { white-space: nowrap; font-size: 9.3pt; }
+
+/* Publications: hanging numbers, breathing room */
+ol.pubs-list { padding-left: 1.9em; }
+ol.pubs-list li {
+  margin: 5px 0;
+  font-size: 9.8pt;
+  line-height: 1.48;
+}
+.cites { font-size: 8.3pt; color: #888; font-style: italic; white-space: nowrap; }
+
+/* "Citations as of" note — sits in the top-right corner of the publications block */
+.asof {
+  font-family: var(--sans);
+  font-size: 8.2pt;
+  color: #999;
+  text-align: right;
+  margin: -2px 0 6px 0;
+}
+
+/* Inline lists (skills / languages) */
+.inline-list { color: #222; }
+
+/* Media sub-group label (h3 inside Selected Media) — lighter than section headers */
+h3.media-group {
+  font-family: var(--sans);
+  font-size: 9.5pt;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #555;
+  margin: 20px 0 2px 0;        /* big gap ABOVE so each group reads as one cluster */
+}
+h2 + h3.media-group { margin-top: 8px; }      /* first group hugs the section title */
+h3.media-group + .entry { margin-top: 2px; }  /* label sticks to its own links */
+html[lang="ko"] h3.media-group { font-size: 10pt; letter-spacing: 0.3px; }
+
+/* Language tag on a media item, e.g. (영문) / (in Korean) */
+.lang { font-size: 8.5pt; color: #999; font-style: italic; }
+
+/* Sub-detail under an entry (thesis, advisor, research field) — slightly small */
+.detail {
+  font-size: 9.3pt;
+  color: #555;
+  line-height: 1.45;
+  margin: 1px 0 0 0;
+}
+
+/* Footnote / annotation under an entry */
+.note {
+  font-family: var(--sans);
+  font-size: 8.8pt;
+  color: #666;
+  font-style: italic;
+  line-height: 1.4;
+  margin: 2px 0 2px 0;
+}

@@ -1,0 +1,16 @@
+{
+  "name": "terry-cv",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Academic CV (KO/EN) generated from a single Korean markdown source.",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "build:ko": "node scripts/build.mjs ko",
+    "build:en": "node scripts/build.mjs en"
+  },
+  "dependencies": {
+    "js-yaml": "^4.1.0",
+    "markdown-it": "^14.1.0"
+  }
+}
