@@ -7,7 +7,8 @@
   "scripts": {
     "build": "node scripts/build.mjs",
     "build:ko": "node scripts/build.mjs ko",
-    "build:en": "node scripts/build.mjs en"
+    "build:en": "node scripts/build.mjs en",
+    "build:statement": "node scripts/build-statement.mjs"
   },
   "dependencies": {
     "js-yaml": "^4.1.0",

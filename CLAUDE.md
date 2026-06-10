@@ -37,3 +37,19 @@
 ## 사진 교체
 
 `assets/portrait.jpg` 파일을 교체하면 다음 빌드부터 반영. 없으면 한글판에 placeholder 박스가 표시됨.
+
+## 별도 문서: 겸임교원 자기소개서 + 활동계획서 (KO 전용 2장 PDF)
+
+서울대 공대 제조 피지컬AI 겸임교원 지원용. CV와 분리된 빌드 경로.
+
+- `statement.ko.md` — ★ **유일하게 사람이 편집하는 소스.** frontmatter + `# H1` 두 개(겸임교원 자기소개서 / 활동계획서)로 구성. 각 `# H1`이 한 페이지가 됨. `## 소제목`으로 섹션.
+- `templates/statement.css` — `classic.css` 위에 얹는 문서 레이아웃(문서제목·지원자줄·산문·페이지 분할). 폰트·색·`h2` 가로줄 헤더는 `classic.css` 재사용.
+- `scripts/build-statement.mjs` — `statement.ko.md` → `dist/statement.ko.pdf`.
+- 채움 목표: 1장(자기소개서) 80%↑, 2장(활동계획서) ~60%. 본문 길이·`statement.css`의 `.doc-body p` line-height로 미세조정.
+
+### 명령: "pdf 만들어줘" / "자기소개서 업데이트"
+
+`statement.ko.md`를 수정한 뒤 이 요청이 오면 (CV가 아니라 이 문서 맥락이면):
+1. `node scripts/build-statement.mjs` 실행 → `dist/statement.ko.pdf` 재생성.
+2. **정확히 2장**인지, 1장 80%↑ / 2장 ~60% 채움인지 렌더 확인 (`pdftoppm -png -r 90 dist/statement.ko.pdf /tmp/stmt`). 넘치거나 모자라면 본문/line-height 조정 후 재빌드.
+3. 결과 경로 보고. (npm: `npm run build:statement`)

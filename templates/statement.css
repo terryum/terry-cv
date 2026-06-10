@@ -1,0 +1,41 @@
+/* Statement document (겸임교원 자기소개서 / 활동계획서).
+   Loaded AFTER classic.css — reuses its @font-face (Pretendard), :root vars,
+   and h2 section-header style. This file only adds the page/title/prose layout. */
+
+/* Each H1 section becomes one page. */
+.doc-page { break-before: page; }
+.doc-page:first-child { break-before: auto; }
+
+/* Document header: centered title + applicant line, divider like the CV header. */
+.doc-head {
+  text-align: center;
+  border-bottom: 1px solid #222;
+  padding-bottom: 16px;
+  margin-bottom: 20px;
+}
+.doc-title {
+  font-family: var(--sans);
+  font-size: 18pt;
+  font-weight: 700;
+  letter-spacing: 7px;
+  /* offset the trailing letter-spacing so the title stays optically centered */
+  padding-left: 7px;
+  margin: 0;
+}
+.applicant {
+  font-family: var(--sans);
+  font-size: 9.5pt;
+  color: var(--muted);
+  letter-spacing: 0.3px;
+  margin-top: 11px;
+}
+.applicant a { border-bottom: none; }
+
+/* Prose body: generous leading for readability + page fill. */
+.doc-body p {
+  margin: 0 0 11px 0;
+  line-height: 1.68;
+  text-align: justify;
+}
+.doc-body h2 { margin-top: 21px; }
+.doc-body h2:first-of-type { margin-top: 4px; }
